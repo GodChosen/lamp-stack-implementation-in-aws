@@ -30,22 +30,22 @@ sudo apt install apache2 -y
 sudo systemctl status apache2
 ```
 **Result screenshot:**
-![](%https://github.com/GodChosen/lamp-stack-implementation-in-aws/blob/master/apache-running.PNG%)
+![](%https://github.com/GodChosen/lamp-stack-implementation-in-aws/blob/master/Screenshots/apache-running.PNG%)
 
 - Confirm that apache server is rendering from within the EC2 instance
 `curl http://localhost:80`
 **Result Screenshot:**
-![](%https://github.com/GodChosen/lamp-stack-implementation-in-aws/blob/master/working-apache.PNG%)
+![](%https://github.com/GodChosen/lamp-stack-implementation-in-aws/blob/master/Screenshots/working-apache.PNG%)
 
 - Update the firewall rules
 To enable users to access the web server over the internet, I had to open port 80 (for HTTP traffic) using the AWS console. I created a new inbound rule in the security group attached to the EC2 instance with port 80 open to traffic from anywhere.
 **Result Screenshot:**
-![](%https://github.com/GodChosen/lamp-stack-implementation-in-aws/blob/master/firewall-updated.PNG%)
+![](%https://github.com/GodChosen/lamp-stack-implementation-in-aws/blob/master/Screenshots/firewall-updated.PNG%)
 
 - Test if you can access Apache server from the internet
 To test, I used the command `curl -s http://169.254.169.254/latest/meta-data/public-ipv4` to obtain the public IP address of my EC2 instance and then navigated to that IP address using the web browser of my local system.
 **Result Screenshot:**
-![](%https://github.com/GodChosen/lamp-stack-implementation-in-aws/blob/master/apache-in-webbrowser.PNG%)
+![](%https://github.com/GodChosen/lamp-stack-implementation-in-aws/blob/master/Screenshots/apache-in-webbrowser.PNG%)
 
 
 
