@@ -1,9 +1,9 @@
 ## LAMP STACK IMPLEMENTATION
 To ensure a successful completion of this project, here are some prerequisites:
-- [Have VS Code and some of it's extensions installed.]
-- [Create AWS account and launch an EC2 Instance]
-- [Create a GitHub account and create a personal access token (PAT)]
-- [Create OpenSSH key pair in your local system and use the public key to create SSH key in GitHub]
+- Have VS Code and some of it's extensions installed.
+- Create AWS account and launch an EC2 Instance
+- Create a GitHub account and create a personal access token (PAT)
+- Create OpenSSH key pair in your local system and use the public key to create SSH key in GitHub
 
 Below are the steps I followed to implement a LAMP STACK in AWS
 ### 1.  Install Apache Server and Update the Firewall Rule
@@ -55,6 +55,41 @@ To test, I used the command `curl -s http://169.254.169.254/latest/meta-data/pub
 **Result Screenshot:**
 <br />
 ![Apache Accessible from Internet](Screenshots/apache-in-webbrowser.PNG)
+
+### 2.  Install MySQL Database
+I followed the steps below to install and configure MySQL:
+
+- use apt package installer to install MySQL
+```sudo apt install mysql-server -y```
+
+- Connect to the MySQL server as the administrative database user root
+```sudo mysql```
+
+- Set password for the system root user
+```ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'PassWord.1';```
+
+- Run a security script that comes pre-installed with MySQL. This script will remove some insecure default settings and lock down access to your database system.
+```sudo mysql_secure_installation```
+
+- To configure the VALIDATE PASSWORD PLUGIN, select Yes when prompted. If the feature is enabled, passwords which don’t match the specified criteria will be rejected by MySQL with an error.
+
+- Set the MySQL root password.
+
+- Press Y and hit the ENTER key when prompted to change the root password, remove some anonymous users and the test database, disable remote root logins, and load these new rules so that MySQL immediately respects the changes you have made.
+
+- Test logging into the MySQL console
+```sudo mysql -p```
+exit
+
+**Result Screenshot:**
+<br />
+![MySQL Login Success](Screenshots/mysql-login.PNG)
+
+**Note:** At the time of this writing, the native MySQL PHP library mysqlnd doesn’t support caching_sha2_authentication, the default authentication method for MySQL 8. For that reason, when creating database users for PHP applications on MySQL 8, you’ll need to make sure they’re configured to use mysql_native_password instead.
+
+
+
+
 
 
 
