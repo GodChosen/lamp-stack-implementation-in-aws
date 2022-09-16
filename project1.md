@@ -28,31 +28,27 @@ sudo apt install apache2 -y
 
 #confirm that apache is running
 sudo systemctl status apache2
-```
-<br />
-**Result screenshot:**
-<br />
+```<br />
+
+**Result Screenshot:**<br />
 ![Apache Status](Screenshots/apache-running.PNG)
 
 - Confirm that apache server is rendering from within the EC2 instance
-`curl http://localhost:80`
-<br />
-**Result Screenshot:**
-<br />
+`curl http://localhost:80` <br />
+
+**Result Screenshot:**<br />
 ![Working Apache](Screenshots/working-apache.PNG)
 
 - Update the firewall rules
-To enable users to access the web server over the internet, I had to open port 80 (for HTTP traffic) using the AWS console. I created a new inbound rule in the security group attached to the EC2 instance with port 80 open to traffic from anywhere.
-<br />
-**Result Screenshot:**
-<br />
+To enable users to access the web server over the internet, I had to open port 80 (for HTTP traffic) using the AWS console. I created a new inbound rule in the security group attached to the EC2 instance with port 80 open to traffic from anywhere.<br />
+
+**Result Screenshot:**<br />
 ![Security Group Firewall](Screenshots/firewall-updated.PNG)
 
 - Test if you can access Apache server from the internet
-To test, I used the command `curl -s http://169.254.169.254/latest/meta-data/public-ipv4` to obtain the public IP address of my EC2 instance and then navigated to that IP address using the web browser of my local system.
-<br />
-**Result Screenshot:**
-<br />
+To test, I used the command `curl -s http://169.254.169.254/latest/meta-data/public-ipv4` to obtain the public IP address of my EC2 instance and then navigated to that IP address using the web browser of my local system.<br />
+
+**Result Screenshot:**<br />
 ![Apache Accessible from Internet](Screenshots/apache-in-webbrowser.PNG)
 
 
