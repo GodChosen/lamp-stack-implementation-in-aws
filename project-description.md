@@ -1,9 +1,9 @@
 ## LAMP STACK IMPLEMENTATION
 To ensure a successful completion of this project, here are some prerequisites:
-- Have VS Code and some of it's extensions installed.
-- Create AWS account and launch an EC2 Instance
-- Create a GitHub account and create a personal access token (PAT)
-- Create OpenSSH key pair in your local system and use the public key to create SSH key in GitHub
+- [Have VS Code and some of it's extensions installed.]
+- [Create AWS account and launch an EC2 Instance]
+- [Create a GitHub account and create a personal access token (PAT)]
+- [Create OpenSSH key pair in your local system and use the public key to create SSH key in GitHub]
 
 Below are the steps I followed to implement a LAMP STACK in AWS
 ### 1.  Install Apache Server and Update the Firewall Rule
