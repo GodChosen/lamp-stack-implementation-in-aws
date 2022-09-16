@@ -60,16 +60,24 @@ To test, I used the command `curl -s http://169.254.169.254/latest/meta-data/pub
 I followed the steps below to install and configure MySQL:
 
 - use apt package installer to install MySQL
-```sudo apt install mysql-server -y```
+```
+sudo apt install mysql-server -y
+```
 
 - Connect to the MySQL server as the administrative database user root
-```sudo mysql```
+```
+sudo mysql
+```
 
 - Set password for the system root user
-```ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'PassWord.1';```
+```
+ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'PassWord.1';
+```
 
 - Run a security script that comes pre-installed with MySQL. This script will remove some insecure default settings and lock down access to your database system.
-```sudo mysql_secure_installation```
+```
+sudo mysql_secure_installation
+```
 
 - To configure the VALIDATE PASSWORD PLUGIN, select Yes when prompted. If the feature is enabled, passwords which don’t match the specified criteria will be rejected by MySQL with an error.
 
@@ -78,8 +86,9 @@ I followed the steps below to install and configure MySQL:
 - Press Y and hit the ENTER key when prompted to change the root password, remove some anonymous users and the test database, disable remote root logins, and load these new rules so that MySQL immediately respects the changes you have made.
 
 - Test logging into the MySQL console
-```sudo mysql -p```
-exit
+```
+sudo mysql -p
+```
 
 **Result Screenshot:**
 <br />
