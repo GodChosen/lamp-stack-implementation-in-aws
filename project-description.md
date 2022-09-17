@@ -220,7 +220,7 @@ sudo systemctl reload apache2
 
 **Note:**Use the command below to remove the index.php file from the website root directory when done, as it exposes key information about the PHP environment.<br />
 
-Credit: ![This guide was inspired by Digital Ocean](https://www.digitalocean.com/community/tutorials/how-to-install-linux-apache-mysql-php-lamp-stack-on-ubuntu-20-04#step-3-%E2%80%94-installing-php)
+Credit: [This guide was inspired by Digital Ocean](https://www.digitalocean.com/community/tutorials/how-to-install-linux-apache-mysql-php-lamp-stack-on-ubuntu-20-04#step-3-%E2%80%94-installing-php)
 
 
 
