@@ -96,6 +96,127 @@ sudo mysql -p
 
 **Note:** At the time of this writing, the native MySQL PHP library mysqlnd doesn’t support caching_sha2_authentication, the default authentication method for MySQL 8. For that reason, when creating database users for PHP applications on MySQL 8, you’ll need to make sure they’re configured to use mysql_native_password instead.
 
+### 3.  Install PHP
+To have PHP working as needed, I had to install these three packages: php, php-mysql, and libapache2-mod-php
+
+- Install the needed packages
+```
+sudo apt install -y php php-mysql libapache2-mod-php
+```
+
+- Confirm complete installation of PHP
+```
+php -v
+```
+**Result Scrrenshot:**
+![PHP Working](Screenshots/php-installed.PNG)
+
+### 4.  Create a Virtual host for my website using Apache
+To create a virtual host for my website on Apache, I needed to setup a domain called myconsult.
+
+- Create a directory called myconsult
+```
+sudo mkdir /var/www/myconsult
+```
+
+- Assign ownership of the directory to my current user
+```
+sudo chown -R $USER:$USER /var/www/myconsult
+```
+
+- Create and open a new configuration file in Apache’s sites-available directory
+```
+sudo vi /etc/apache2/sites-available/myconsult.conf
+```
+
+- Paste the following configurations inside the configuration file, save and close.
+```
+<VirtualHost *:80>
+    ServerName myconsult
+    ServerAlias www.myconsult 
+    ServerAdmin webmaster@localhost
+    DocumentRoot /var/www/myconsult
+    ErrorLog ${APACHE_LOG_DIR}/error.log
+    CustomLog ${APACHE_LOG_DIR}/access.log combined
+</VirtualHost>
+```
+
+- Confirm that the configuration file was created and saved in the right directory
+```
+sudo ls /etc/apache2/sites-available
+```
+**Result Scrrenshot:**
+![Website Config File Created](Screenshots/website-configfile-created.PNG)
+
+**Note:** To test Apache without a domain, remove or comment out the options ServerName and ServerAlias by adding a # character in the beginning of each option’s lines. Adding the # character there will tell the program to skip processing the instructions on those lines.
+
+- Enable the new virtual host using the `a2ensite` command
+```
+sudo a2ensite myconsult
+```
+
+- Use the `a2dissite` command to disable default website if you are not using custom domain
+```
+sudo a2dissite 000-default
+```
+
+- To check if the configuration file contains syntax errors, run the command below
+```
+sudo apache2ctl configtest
+```
+
+- Create an index.html file in the root directory of my website '/var/www/myconsult/'
+```
+sudo echo 'Hello LAMP from hostname' $(curl -s http://169.254.169.254/latest/meta-data/public-hostname) 'with public IP' $(curl -s http://169.254.169.254/latest/meta-data/public-ipv4) > /var/www/myconsult/index.html
+```
+
+- Reload Apache for the changes to take effect
+```
+sudo systemctl reload apache2
+```
+
+- Test if everything worked as expected by naviagting to the address: http://3.89.222.110
+
+**Result Scrrenshot:**
+![PHP Working](Screenshots/virtualhost-working.PNG)
+
+
+### 5.  Enable PHP on my Website
+To enable PHP on my website, I had to create an index.php file in my website root directory and changed the order of preference of the index.html and index.php files in my /etc/apache2/mods-enabled/dir.conf configuration file.
+
+- Create and open an index.php file
+```
+sudo vi /var/www/myconsult/index.php
+```
+
+- Paste the following configuration inside the file, save and close it
+```
+<?php
+phpinfo();
+```
+
+- Edit the /etc/apache2/mods-enabled/dir.conf configuration file
+```
+sudo vim /etc/apache2/mods-enabled/dir.conf
+```
+```
+<IfModule mod_dir.c>
+        #Change this:
+        #DirectoryIndex index.html index.cgi index.pl index.php index.xhtml index.htm
+        #To this:
+        DirectoryIndex index.php index.html index.cgi index.pl index.xhtml index.htm
+</IfModule>
+```
+
+- Reload Apache so that changes would take effect.
+```
+sudo systemctl reload apache2
+```
+
+- Confirm that PHP has been correctly enabled for my website by visting the address: http://3.89.222.110
+
+**Result Scrrenshot:**
+![PHP Working on Website](Screenshots/php-working-on-website.PNG)
 
 
 
