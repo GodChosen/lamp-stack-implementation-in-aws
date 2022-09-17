@@ -108,7 +108,7 @@ sudo apt install -y php php-mysql libapache2-mod-php
 ```
 php -v
 ```
-**Result Scrrenshot:**
+**Result Screenshot:**<br />
 ![PHP Working](Screenshots/php-installed.PNG)
 
 ### 4.  Create a Virtual host for my website using Apache
@@ -145,7 +145,7 @@ sudo vi /etc/apache2/sites-available/myconsult.conf
 ```
 sudo ls /etc/apache2/sites-available
 ```
-**Result Scrrenshot:**
+**Result Screenshot:**<br />
 ![Website Config File Created](Screenshots/website-configfile-created.PNG)
 
 **Note:** To test Apache without a domain, remove or comment out the options ServerName and ServerAlias by adding a # character in the beginning of each option’s lines. Adding the # character there will tell the program to skip processing the instructions on those lines.
@@ -177,7 +177,7 @@ sudo systemctl reload apache2
 
 - Test if everything worked as expected by naviagting to the address: http://3.89.222.110
 
-**Result Scrrenshot:**
+**Result Screenshot:**<br />
 ![PHP Working](Screenshots/virtualhost-working.PNG)
 
 
@@ -215,8 +215,14 @@ sudo systemctl reload apache2
 
 - Confirm that PHP has been correctly enabled for my website by visting the address: http://3.89.222.110
 
-**Result Scrrenshot:**
+**Result Screenshot:**<br />
 ![PHP Working on Website](Screenshots/php-working-on-website.PNG)
+
+**Note:**Use the command below to remove the index.php file from the website root directory when done, as it exposes key information about the PHP environment.<br />
+
+Credit: ![This guide was inspired by Digital Ocean](https://www.digitalocean.com/community/tutorials/how-to-install-linux-apache-mysql-php-lamp-stack-on-ubuntu-20-04#step-3-%E2%80%94-installing-php)
+
+
 
 
 
